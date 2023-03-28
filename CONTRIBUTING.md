@@ -3,7 +3,7 @@
 Contributions are welcome, and they are greatly appreciated! Every little bit
 helps, and credit will always be given.
 
-If you notice a bug or have a feature request, please report [here]([https://github.com/qurat-azim/contraceptive_methods_analysis/issues]. All contributors must abide by our [code of conduct](https://github.com/qurat-azim/contraceptive_methods_analysis/blob/main/CODE_OF_CONDUCT.md).
+If you notice a bug or have a feature request, please report [here](https://github.com/qurat-azim/contraceptive_methods_analysis/issues]. All contributors must abide by our [code of conduct](https://github.com/qurat-azim/contraceptive_methods_analysis/blob/main/CODE_OF_CONDUCT.md).
 
 ## Types of Contributions
 
@@ -54,5 +54,5 @@ Before you submit a pull request, check that it meets these guidelines:
 
 ## Code of Conduct
 
-Please note that the `Suicides-Analysis-Dash` project is released with a
-[Code of Conduct](https://github.com/qurat-azim/Suicides-Analysis-Dash/blob/main/CODE_OF_CONDUCT.md). By contributing to this project you agree to abide by its terms.
+Please note that the `contraceptive_methods_analysis` project is released with a
+[Code of Conduct](https://github.com/qurat-azim/contraceptive_methods_analysis/blob/main/CODE_OF_CONDUCT.md). By contributing to this project you agree to abide by its terms.
