@@ -120,6 +120,39 @@ We also ran a multiple regression model, regressing contraception method against
 - high level of `education`
 - number of `children`
 
-More detailed tidy tables can be accessed in [this notebook](https://github.com/qurat-azim/contraceptive_methods_analysis/blob/main/src/multinomial_inference.ipynb)
+More detailed tidy tables can be accessed in [this notebook](https://github.com/qurat-azim/contraceptive_methods_analysis/blob/main/src/multinomial_inference.ipynb).
 
 ## Predictive Modelling Results
+
+For our predictive analysis, we want to be able to predict the class of our target `contraceptive_method` given a set of features from the dataset. To be able to conduct the predictive analysis, we preprocessed the attributes to encode `age` and `children` as numerical features; `spouse_occupation` as nominal feature; `religion`, `work`, `media_exposure` as binary features; and `education`, `spouse_education`, `living_standard` as ordinal features. We then use various Ml models with cross-validation to identify how good the model performs at classifying the class correctly. Since we do not have a preference for a certain class, or for minimizing false positives or negatives, we score our models using `f1` metric with weighted average over all classes. We would also like to mention here we expecte low classification sores are as this is a multiclass classification problem.
+
+We first try Ridge classifier, and obtain unsatisfactory results on the training set as shown in following confusion matrix.
+
+```{r fig.cap="**Figure 7.** confusion matrix ridge", fig.align='center', out.width = '50%'}
+
+knitr::include_graphics("../results/analysis_results/cm_ridge.png")
+```
+
+
+Next, we use the logistic regression model to obtain feature importances for all the classes. We observe that `age` is the most important features for predicting no contraception while `education` and `children` contribute negatively towards predicting no contraception. `children` (positive contribution), `education`  (positive contribution) and `religion` (negative contribution) are most important for long term contraceptive use. Religion becomes an important feature and makes sense because, according to our knowledge, Islam discourages permanent contraception. This provides a nice sanity check. For short term contraception, `age`, `children` and `media_exposure` are most important.
+
+```{r fig.align='center'}
+read.csv("../results/analysis_results/feature_importances.csv") %>%
+  mutate_if(is.numeric, round, 3) %>%
+  kable(caption = "Table 1. Feature importances for all classes") %>%
+  kable_styling(full_width = T, font_size = 10) %>%
+  kable_classic_2(full_width = T) %>%
+  scroll_box(width = "100%", height = "200px")
+```
+
+
+We then obtain successively better cross validation results 9f1 score from 0.48 to 0.54) with Logistic regression, support vector machines, random forests, and gradient boosting methods.
+
+We finally choose to use polynomial features with degree 2 and then hyperparameter optimization. We apply this for the logistic regression model due to ease in interpretability. The resulting confusion matrix with this optimized model is:
+
+```{r fig.cap="**Figure 7.** confusion matrix optimal", fig.align='center', out.width = '50%'}
+
+knitr::include_graphics("../results/analysis_results/cm_optimal.png")
+```
+
+After performing these two steps, we obtain a weighted f1 score of 0.60 on training and 0.54 on testing data. More details of the analysis can be found in [this notebook](https://github.com/qurat-azim/contraceptive_methods_analysis/blob/main/src/ML_models.ipynb).

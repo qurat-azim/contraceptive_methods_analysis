@@ -183,6 +183,250 @@ that the there are significant associations between
 of `education` - number of `children`
 
 More detailed tidy tables can be accessed in [this
-notebook](https://github.com/qurat-azim/contraceptive_methods_analysis/blob/main/src/multinomial_inference.ipynb)
+notebook](https://github.com/qurat-azim/contraceptive_methods_analysis/blob/main/src/multinomial_inference.ipynb).
 
 ## Predictive Modelling Results
+
+For our predictive analysis, we want to be able to predict the class of
+our target `contraceptive_method` given a set of features from the
+dataset. To be able to conduct the predictive analysis, we preprocessed
+the attributes to encode `age` and `children` as numerical features;
+`spouse_occupation` as nominal feature; `religion`, `work`,
+`media_exposure` as binary features; and `education`,
+`spouse_education`, `living_standard` as ordinal features. We then use
+various Ml models with cross-validation to identify how good the model
+performs at classifying the class correctly. Since we do not have a
+preference for a certain class, or for minimizing false positives or
+negatives, we score our models using `f1` metric with weighted average
+over all classes. We would also like to mention here we expecte low
+classification sores are as this is a multiclass classification problem.
+
+We first try Ridge classifier, and obtain unsatisfactory results on the
+training set as shown in following confusion matrix.
+
+<img src="../results/analysis_results/cm_ridge.png" alt="**Figure 7.** confusion matrix ridge" width="50%" style="display: block; margin: auto;" />
+
+Next, we use the logistic regression model to obtain feature importances
+for all the classes. We observe that `age` is the most important
+features for predicting no contraception while `education` and
+`children` contribute negatively towards predicting no contraception.
+`children` (positive contribution), `education` (positive contribution)
+and `religion` (negative contribution) are most important for long term
+contraceptive use. Religion becomes an important feature and makes sense
+because, according to our knowledge, Islam discourages permanent
+contraception. This provides a nice sanity check. For short term
+contraception, `age`, `children` and `media_exposure` are most
+important.
+
+<div
+style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:200px; overflow-x: scroll; width:100%; ">
+
+<table class="table lightable-classic-2" style="font-size: 10px; margin-left: auto; margin-right: auto; font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; margin-left: auto; margin-right: auto;">
+<caption style="font-size: initial !important;">
+Table 1. Feature importances for all classes
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;">
+X
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Coefficient_No_use
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Coefficient_Long_term
+</th>
+<th style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;">
+Coefficient_short_term
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+age
+</td>
+<td style="text-align:right;">
+0.402
+</td>
+<td style="text-align:right;">
+0.042
+</td>
+<td style="text-align:right;">
+-0.444
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+children
+</td>
+<td style="text-align:right;">
+-0.506
+</td>
+<td style="text-align:right;">
+0.251
+</td>
+<td style="text-align:right;">
+0.255
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+education
+</td>
+<td style="text-align:right;">
+-0.396
+</td>
+<td style="text-align:right;">
+0.416
+</td>
+<td style="text-align:right;">
+-0.020
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+spouse_education
+</td>
+<td style="text-align:right;">
+0.023
+</td>
+<td style="text-align:right;">
+-0.071
+</td>
+<td style="text-align:right;">
+0.048
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+living_standard
+</td>
+<td style="text-align:right;">
+-0.177
+</td>
+<td style="text-align:right;">
+0.124
+</td>
+<td style="text-align:right;">
+0.053
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+spouse_occupation_1
+</td>
+<td style="text-align:right;">
+-0.017
+</td>
+<td style="text-align:right;">
+0.191
+</td>
+<td style="text-align:right;">
+-0.174
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+spouse_occupation_2
+</td>
+<td style="text-align:right;">
+0.134
+</td>
+<td style="text-align:right;">
+-0.195
+</td>
+<td style="text-align:right;">
+0.061
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+spouse_occupation_3
+</td>
+<td style="text-align:right;">
+0.015
+</td>
+<td style="text-align:right;">
+-0.149
+</td>
+<td style="text-align:right;">
+0.134
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+spouse_occupation_4
+</td>
+<td style="text-align:right;">
+-0.146
+</td>
+<td style="text-align:right;">
+0.159
+</td>
+<td style="text-align:right;">
+-0.013
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+religion
+</td>
+<td style="text-align:right;">
+0.312
+</td>
+<td style="text-align:right;">
+-0.269
+</td>
+<td style="text-align:right;">
+-0.043
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+work
+</td>
+<td style="text-align:right;">
+-0.065
+</td>
+<td style="text-align:right;">
+-0.046
+</td>
+<td style="text-align:right;">
+0.112
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+media_exposure
+</td>
+<td style="text-align:right;">
+0.221
+</td>
+<td style="text-align:right;">
+-0.048
+</td>
+<td style="text-align:right;">
+-0.173
+</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+We then obtain successively better cross validation results 9f1 score
+from 0.48 to 0.54) with Logistic regression, support vector machines,
+random forests, and gradient boosting methods.
+
+We finally choose to use polynomial features with degree 2 and then
+hyperparameter optimization. We apply this for the logistic regression
+model due to ease in interpretability. The resulting confusion matrix
+with this optimized model is:
+
+<img src="../results/analysis_results/cm_optimal.png" alt="**Figure 7.** confusion matrix optimal" width="50%" style="display: block; margin: auto;" />
+
+After performing these two steps, we obtain a weighted f1 score of 0.60
+on training and 0.54 on testing data. More details of the analysis can
+be found in [this
+notebook](https://github.com/qurat-azim/contraceptive_methods_analysis/blob/main/src/ML_models.ipynb).
