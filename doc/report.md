@@ -78,6 +78,8 @@ socio-economic characteristics. The attributes of the data are:
 
 ## Exploratory Data Analysis Results
 
+The coding and analysis can be found in [this
+notebook](https://github.com/qurat-azim/contraceptive_methods_analysis/blob/main/src/Preliminary_EDA.ipynb).
 We observe that women who are past the avergae age of 35 years more
 likely opt for long term contraceptive methods, while those around 32
 years of age do not use any. This can be attributed to them wanting more
@@ -117,5 +119,60 @@ contraceptive methods do not overlap.
 <img src="../results/eda_results/dists.svg" alt="**Figure 6.** Attribute distributions" width="70%" style="display: block; margin: auto;" />
 
 ## Inferential Study Results
+
+Our response variable is `contraceptive_method`, which is a categorical
+variable with more than two classes. Therefore we used a generalized
+multiinomial logistic regression approach to derive inference for our
+study. We derive inference in two ways: using simple regression while
+considering one regressor at a time for six different regressors, and
+then using a multiple regression model. From the simple regression
+models, we have the following statistically significant conclusions:
+
+- With each year’s increase in `age`, a woman is 1.05 times more likely
+  to use no contraceptive methods as opposed to long term contraception.
+
+- With each number increase in `children`, a woman is 1.08 times more
+  likely to use long term contraception than no contraception and 1.15
+  times more likely to use short term contraception as opposed to no
+  contraception.
+
+- When the woman’s `religion` is Islam, she is 1.15 times more likely to
+  use no contraception rather than short term contraception.
+
+- A woman with medium-low (`2`) level of `education` is 1.77 times more
+  likely than a woman with low(`1`) level of education to use long term
+  contraception and 2.41 times more likely to use short term
+  contraception as opposed to no contraception.
+
+- A woman with medium-high (`3`) level of `education` is 2.28 times more
+  likely than a woman with low(`1`) level of education to use long term
+  contraception and 5.23 times more likely to use short term
+  contraception as opposed to no contraception.
+
+- A woman with high (`4`) level of `education` is 2.87 times more likely
+  than a woman with low(`1`) level of education to use long term
+  contraception and 13.54 times more likely to use short term
+  contraception as opposed to no contraception.
+
+- A woman who `works` is 1.35 times more likely than the one who doesn’t
+  to use long term contraception as opposed to no contraception.
+
+- A woman with medium low (`2`) level of `living_standard` is 2.28 times
+  more likely than the one with low (`1`) `living_standard` to use short
+  term contraception than no contraception.
+
+- A woman with medium high (`3`) level of `living_standard` is 1.71
+  times more likely to use long term contraception and 4.35 times more
+  likely to use long term contraception than no contraception, when
+  compared to the one with low (`1`) `living_standard`.
+
+- A woman with high (`4`) level of `living_standard` is 1.87 times more
+  likely to use long term contraception and 7.31 times more likely to
+  use long term contraception than no contraception, when compared to
+  the one with low (`1`) `living_standard`.
+
+Please note that all these interpretations are made for simple
+regression models only therefore are valid only when rest of the
+attributes are kept constant.
 
 ## Predictive Modelling Results
