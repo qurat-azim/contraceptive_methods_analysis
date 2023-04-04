@@ -3,11 +3,11 @@ title: "Contraceptive Methods Analysis"
 author: "Qurat-ul-Ain Azim"
 date: '04/03/2023 (updated: `r Sys.Date()`)'
 output:
+  github_document:
+    toc: yes
   html_document: 
     toc: yes
     df_print: paged
-  github_document:
-    toc: yes
 editor_options:
   markdown:
     wrap: sentence
