@@ -126,7 +126,8 @@ multiinomial logistic regression approach to derive inference for our
 study. We derive inference in two ways: using simple regression while
 considering one regressor at a time for six different regressors, and
 then using a multiple regression model. From the simple regression
-models, we have the following statistically significant conclusions:
+models, we have the following statistically significant (at level of
+0.05) conclusions:
 
 - With each year’s increase in `age`, a woman is 1.05 times more likely
   to use no contraceptive methods as opposed to long term contraception.
@@ -174,5 +175,14 @@ models, we have the following statistically significant conclusions:
 Please note that all these interpretations are made for simple
 regression models only therefore are valid only when rest of the
 attributes are kept constant.
+
+We also ran a multiple regression model, regressing contraception method
+against many, but not all, regressors at the same time. The model showed
+that the there are significant associations between
+`contraceptive_method` and - high `living_standard` - `age` - high level
+of `education` - number of `children`
+
+More detailed tidy tables can be accessed in [this
+notebook](https://github.com/qurat-azim/contraceptive_methods_analysis/blob/main/src/multinomial_inference.ipynb)
 
 ## Predictive Modelling Results
