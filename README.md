@@ -5,7 +5,7 @@ This is a project that explores the relationship between different personal and 
 
 ## Dataset
 
-The dataset used in this project is a subset of the 1987 National Indonesia Contraceptive Prevalence Survey, obtained from the UCI Machine Learning Repository. The data consists of personal and socio-economic attributes of married women who were either not pregnant or do not know if they were at the time of interview, and the contraceptive method they are currently using.
+The [dataset](https://archive.ics.uci.edu/ml/datasets/Contraceptive+Method+Choice) used in this project is a subset of the 1987 National Indonesia Contraceptive Prevalence Survey, obtained from the [UCI Machine Learning repository](https://archive.ics.uci.edu/ml/index.php). The data consists of personal and socio-economic attributes of married women who were either not pregnant or do not know if they were at the time of interview, and the contraceptive method they are currently using.
 
 ## Dependencies
 
@@ -25,7 +25,7 @@ Interested in contributing? Check out the contributing guidelines [here](https:/
 
 ## References
 
-The dataset used in this project is the Suicide Rates Overview (1985 to 2021) available on Kaggle. The data was originally sourced from the United Nations Development Program, World Bank and World Health Organization.
+The dataset used in this project is the [dataset](https://archive.ics.uci.edu/ml/datasets/Contraceptive+Method+Choice) we use is obtained from [UCI Machine Learning repository](https://archive.ics.uci.edu/ml/index.php).
 
 Please refer to the original data sources for more information on how the data was collected and processed.
 
