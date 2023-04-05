@@ -42,6 +42,14 @@ In this project, we conducted an inferential analysis using a generalized linear
 
 The final report of the project is available [here](https://github.com/qurat-azim/contraceptive_methods_analysis/blob/main/doc/report.md). It includes the exploratory data analysis, inferential analysis, and predictive analysis, as well as the results and interpretations of the analyses.
 
+## Future improvements
+
+This project is under active development, and we are working on many more areas of improvement for whoever wants to use the analysis. We are working on:
+- scripting the files
+- making and environment file for installing all dependencies at once
+- automating the running of project through `make`
+- possibly Docker containerization for complete automation
+
 ## Contributing to the project
 
 Interested in contributing? Check out the contributing guidelines [here](https://github.com/qurat-azim/contraceptive_methods_analysis/blob/main/CONTRIBUTING.md). Please note that this project is released with a [Code of Conduct](https://github.com/qurat-azim/contraceptive_methods_analysis/blob/main/CODE_OF_CONDUCT.md). By contributing to this project, you agree to abide by its terms.
