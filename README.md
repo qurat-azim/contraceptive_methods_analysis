@@ -9,7 +9,30 @@ The [dataset](https://archive.ics.uci.edu/ml/datasets/Contraceptive+Method+Choic
 
 ## Dependencies
 
+The projeect is developed with following dependencies
+ - R version 3.6.3 or later
+ - RStudio version 1.3 or later
+ - altair==4.2.0
+ - numpy=1.23.3
+ - ipykernel
+ - scikit-learn==1.1.2
+ - pandas=1.4.4
+ - matplotlib>=3.5.3
+ - glmnet>=4.1
+ - tidyverse
+ - VGAM>=1.1
+
 ## Usage
+
+If you would like run the analysis yourself, please make sure you have all the dependencies installed, and then follow the following steps, in order:
+
+1. Clone the repository by typing this on your terminal:
+``` git clone https://github.com/qurat-azim/contraceptive_methods_analysis```
+2. Run the notebook [Preliminary_EDA](https://github.com/qurat-azim/contraceptive_methods_analysis/blob/main/src/Preliminary_EDA.ipynb) in your ipykernel for performing exploratory data analyis.
+3. Run the notebook [multinomial_inference](https://github.com/qurat-azim/contraceptive_methods_analysis/blob/main/src/multinomial_inference.ipynb) in R kernel for inferential analyis.
+4. Run the notebook [train_yest_split](https://github.com/qurat-azim/contraceptive_methods_analysis/blob/main/src/train_test_split.ipynb) in ipykernel for train test split.
+5. Run the notebook [ML_models](https://github.com/qurat-azim/contraceptive_methods_analysis/blob/main/src/ML_models.ipynb) in ipykernel for performing predictive analysis.
+
 
 ## Analysis
 
