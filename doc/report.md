@@ -1,7 +1,7 @@
 Contraceptive Methods Analysis
 ================
 Qurat-ul-Ain Azim
-04/03/2023 (updated: 2023-04-04)
+04/03/2023 (updated: 2023-04-30)
 
 - <a href="#summary" id="toc-summary">Summary</a>
 - <a href="#dataset" id="toc-dataset">Dataset</a>
@@ -18,10 +18,10 @@ Qurat-ul-Ain Azim
 In this project, we study how the use of different contraceptive plans
 are associated with various personal and socio-economic factors of the
 user. The aim of this study is to aid scientists and healthcare
-organizations understand how different factors affect contraception. As
-an example, a policy makers in healthcare organization would be able to
-identify which age-group or socio-economic class of the society to
-introduce subsidized contraceptive plans for.
+organizations understand how different factors that affect contraception
+plans. As an example, policy makers in healthcare organization would be
+able to identify which age-group or socio-economic class of the society
+to introduce subsidized contraceptive plans for with this analysis.
 
 We conducted an inferential analysis using a generalized linear model
 with multinomial logistic regression, and found that the number of
@@ -179,8 +179,12 @@ attributes are kept constant.
 We also ran a multiple regression model, regressing contraception method
 against many, but not all, regressors at the same time. The model showed
 that the there are significant associations between
-`contraceptive_method` and - high `living_standard` - `age` - high level
-of `education` - number of `children`
+`contraceptive_method` and
+
+- high `living_standard`
+- `age`
+- high level of `education`
+- number of `children`
 
 More detailed tidy tables can be accessed in [this
 notebook](https://github.com/qurat-azim/contraceptive_methods_analysis/blob/main/src/multinomial_inference.ipynb).
@@ -193,30 +197,30 @@ dataset. To be able to conduct the predictive analysis, we preprocessed
 the attributes to encode `age` and `children` as numerical features;
 `spouse_occupation` as nominal feature; `religion`, `work`,
 `media_exposure` as binary features; and `education`,
-`spouse_education`, `living_standard` as ordinal features. We then use
-various Ml models with cross-validation to identify how good the model
+`spouse_education`, `living_standard` as ordinal features. We then used
+various ML models with cross-validation to identify how good the model
 performs at classifying the class correctly. Since we do not have a
 preference for a certain class, or for minimizing false positives or
 negatives, we score our models using `f1` metric with weighted average
-over all classes. We would also like to mention here we expecte low
-classification sores are as this is a multiclass classification problem.
+over all classes. We would also like to mention here we expect low
+classification sores as this is a multiclass classification problem.
 
-We first try Ridge classifier, and obtain unsatisfactory results on the
-training set as shown in following confusion matrix.
+We first tried Ridge classifier, and obtain unsatisfactory results on
+the training set as shown in following confusion matrix.
 
 <img src="../results/analysis_results/cm_ridge.png" alt="**Figure 7.** confusion matrix ridge" width="50%" style="display: block; margin: auto;" />
 
-Next, we use the logistic regression model to obtain feature importances
-for all the classes. We observe that `age` is the most important
-features for predicting no contraception while `education` and
+Next, we used the logistic regression model to obtain feature
+importances for all the classes. We observed that `age` is the most
+important features for predicting no contraception while `education` and
 `children` contribute negatively towards predicting no contraception.
 `children` (positive contribution), `education` (positive contribution)
 and `religion` (negative contribution) are most important for long term
 contraceptive use. Religion becomes an important feature and makes sense
 because, according to our knowledge, Islam discourages permanent
-contraception. This provides a nice sanity check. For short term
-contraception, `age`, `children` and `media_exposure` are most
-important.
+contraception. This provides a nice sanity check for our analysis. For
+short term contraception, `age`, `children` and `media_exposure` are
+most important.
 
 <div
 style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:200px; overflow-x: scroll; width:100%; ">
@@ -415,18 +419,18 @@ media_exposure
 
 </div>
 
-We then obtain successively better cross validation results 9f1 score
-from 0.48 to 0.54) with Logistic regression, support vector machines,
-random forests, and gradient boosting methods.
+We then obtained successively better cross validation results (`f1`
+score from 0.48 up to 0.54) with Logistic regression, support vector
+machines, random forests, and gradient boosting methods.
 
-We finally choose to use polynomial features with degree 2 and then
-hyperparameter optimization. We apply this for the logistic regression
+We finally chose to use polynomial features with degree 2 and then
+hyperparameter optimization. We applied this for the logistic regression
 model due to ease in interpretability. The resulting confusion matrix
 with this optimized model is:
 
 <img src="../results/analysis_results/cm_optimal.png" alt="**Figure 7.** confusion matrix optimal" width="50%" style="display: block; margin: auto;" />
 
-After performing these two steps, we obtain a weighted f1 score of 0.60
-on training and 0.54 on testing data. More details of the analysis can
-be found in [this
+After performing these two steps, we obtained a weighted `f1` score of
+0.60 on training and 0.54 on testing data. More details of the analysis
+can be found in [this
 notebook](https://github.com/qurat-azim/contraceptive_methods_analysis/blob/main/src/ML_models.ipynb).
